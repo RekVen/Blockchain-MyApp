@@ -1,0 +1,266 @@
+﻿<Window x:Class="HomeLoanBlockchainApp.MainWindow"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HomeLoanBlockchainApp"
+        xmlns:System="clr-namespace:System;assembly=mscorlib" 
+        mc:Ignorable="d" Title="Customer Information"
+        Height="662" Width="994" BorderBrush="Aquamarine" Background="Black">
+
+    <Window.Resources>
+        <Style x:Key="DataGridHeaderStyle" TargetType="{x:Type DataGridColumnHeader}" >
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="FontStyle" Value="Normal" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Background" Value="Aquamarine" />
+            <Setter Property="Height" Value="30"/>
+        </Style>
+    </Window.Resources>
+
+
+    <TabControl  Foreground="Aquamarine" FontSize="14" FontWeight="Bold" Height="Auto" Width="Auto"
+                  BorderBrush="Aquamarine" Margin="10,0,0,2" HorizontalAlignment="Stretch" Background="Black"
+                 VerticalAlignment="Stretch" TabStripPlacement="Top">
+
+        <TabControl.Resources>
+            <Style TargetType="{x:Type TabItem}">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type TabItem}">
+                            <Border x:Name="Border" BorderThickness="1,1,1,0" BorderBrush="Aquamarine" CornerRadius="4,4,0,0" Margin="2,0">
+                                <ContentPresenter x:Name="ContentSite"
+                                    VerticalAlignment="Center"
+                                    HorizontalAlignment="Center"
+                                    ContentSource="Header"
+                                    Margin="10,2"/>
+                            </Border>
+
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter TargetName="Border" Property="Background" Value="Blue" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </TabControl.Resources>
+
+        <TabItem Header="Customer Info" Background="Black" Foreground="Aquamarine" BorderBrush="Aquamarine"  Height="Auto" Width="Auto">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="0,20,0,0">
+                    <Label Content="Customers:" Grid.Row="0" Grid.Column="0" Width="90" Height="30" VerticalAlignment="Top" 
+                   HorizontalAlignment="Left" Foreground="White" FontWeight="Bold"/>
+                    <ComboBox x:Name="cmbCustomers" Grid.Row="0" Grid.Column="1" Width="140" Height="27" VerticalAlignment="Top" 
+                   HorizontalAlignment="Left" Background="Aquamarine" />
+                </StackPanel>
+               
+                <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Vertical" HorizontalAlignment="Left">
+                    <Grid Margin="10,20,0,0" HorizontalAlignment="Right" Width="800">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="300"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Expander Header="Add New" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Foreground="Aquamarine" FontSize="14" FontWeight="Bold" 
+                            IsExpanded="False" BorderBrush="Aquamarine" Margin="10,0,0,0" HorizontalAlignment="Left" Height="Auto" Width="Auto">
+                            <Grid Margin="0,3,3,0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="40" />
+                                    <RowDefinition Height="40" />
+                                    <RowDefinition Height="40" />
+                                    <RowDefinition Height="40" />
+                                    <RowDefinition Height="40" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="40" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="80" />
+                                    <ColumnDefinition Width="200" />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+
+                                <Label Content="First Name:" Grid.Row="0" Grid.Column="0" FontWeight="Bold" Foreground="White" FontSize="12" Margin="10,0,0,0"/>
+                                <Label Content="Last Name:" Grid.Row="1" Grid.Column="0" FontWeight="Bold" Foreground="White" FontSize="12" Margin="10,0,0,0"/>
+                                <Label Content="Address:" Grid.Row="2" Grid.Column="0" FontWeight="Bold" Foreground="White" FontSize="12" Margin="10,0,0,0"/>
+                                <Label Content="SSN:" Grid.Row="3" Grid.Column="0" FontWeight="Bold" Foreground="White" FontSize="12" Margin="10,0,0,0"/>
+                                <Label Content="Birth Date:" Grid.Row="4" Grid.Column="0" FontWeight="Bold" Foreground="White" FontSize="12" Margin="10,0,0,0"/>
+
+                                <TextBox x:Name="txtFirsName" Grid.Row="0" Grid.Column="1" FontWeight="Bold" Height="30" Width="120" VerticalAlignment="Top" 
+                         HorizontalAlignment="Left" Margin="25,5,0,0" FontSize="12" Foreground="Black"/>
+                                <TextBox x:Name="txtLastName" Grid.Row="1" Grid.Column="1" FontWeight="Bold" Height="30" Width="120" VerticalAlignment="Top" 
+                         HorizontalAlignment="Left" Margin="25,5,0,0" FontSize="12" Foreground="Black"/>
+                                <TextBox x:Name="txtAddress" Grid.Row="2" Grid.Column="1" FontWeight="Bold" Height="30" Width="120" VerticalAlignment="Top" 
+                         HorizontalAlignment="Left" Margin="25,5,0,0" FontSize="12" Foreground="Black"/>
+                                <TextBox x:Name="txtSSN" Grid.Row="3" Grid.Column="1" FontWeight="Bold" Height="30" Width="120" VerticalAlignment="Top" 
+                         HorizontalAlignment="Left" Margin="25,5,0,0" FontSize="12" Foreground="Black"/>
+                                <DatePicker x:Name="dtBirthDate" Grid.Row="4" Grid.Column="1" FontWeight="Bold" Height="30" Width="120" VerticalAlignment="Top" 
+                         HorizontalAlignment="Left" Margin="25,5,0,0" FontSize="12" Foreground="Black"/>
+
+                                <StackPanel Grid.Row="5" Grid.ColumnSpan="2" Grid.Column="0"  Orientation="Horizontal">
+                                    <Expander Header="Account Info"  Foreground="Aquamarine" FontSize="14" FontWeight="Bold" 
+                                                    IsExpanded="True" BorderBrush="Aquamarine">
+                                        <Grid Margin="0,3,3,0">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="40" />
+                                                <RowDefinition Height="40" />
+
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="80" />
+                                                <ColumnDefinition Width="200" />
+
+                                            </Grid.ColumnDefinitions>
+                                            <Label Content="Acct. Type:" Grid.Row="0" Grid.Column="0" Width="90" Height="30" VerticalAlignment="Top" 
+                                           HorizontalAlignment="Left" Foreground="White" FontWeight="Bold"/>
+                                            <ComboBox x:Name="cmbAccountType" Grid.Row="0" Grid.Column="1" Width="140" Height="32" VerticalAlignment="Top" 
+                                              HorizontalAlignment="Left" Background="Aquamarine"  Margin="25,10,10,2" IsReadOnly="True">
+                                                <ListBoxItem Content="Checking"/>
+                                                <Button Content="Saving"/>
+                                            </ComboBox>
+                                            <Label Content="Acct. Number:" Grid.Row="1" Grid.Column="0" Width="90" Height="30" VerticalAlignment="Top" 
+                                           HorizontalAlignment="Left" Foreground="White" FontWeight="Bold"/>
+                                            <TextBox x:Name="txtAcctNumber" Grid.Row="1" Grid.Column="1" FontWeight="Bold" Height="30" Width="120" VerticalAlignment="Top" 
+                                             HorizontalAlignment="Left" Margin="25,5,0,0" FontSize="12" Foreground="Black"/>
+
+                                        </Grid>
+
+                                    </Expander>
+                                </StackPanel>
+
+
+                                <StackPanel Grid.Row="6" Grid.ColumnSpan="2" Grid.Column="0"  Orientation="Horizontal">
+                                    <Button Content="Add" Height="26" Width="60" Margin="90,5,4,5" HorizontalAlignment="Right" Background="Aquamarine" 
+                                    Foreground="Black" x:Name="btnAdd" Click="btnAdd_Click"/>
+                                    <Button Content="Cancel" Height="26" Width="60" Margin="10,4,4,6" HorizontalAlignment="Right" Background="Aquamarine" 
+                                    Foreground="Black" x:Name="btnACancel"/>
+                                </StackPanel>
+
+                            </Grid>
+                        </Expander>
+
+                        <Expander Header=" Update"  Grid.Column="0" Grid.Row="0"  Foreground="Aquamarine" FontSize="14" FontWeight="Bold" 
+                  IsExpanded="False" BorderBrush="Aquamarine" HorizontalAlignment="Left">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <StackPanel Grid.Row="0" Orientation="Horizontal"  Margin="0,10,0,0">
+                                    <Label Content="Customer ID:" Grid.Row="0" Grid.Column="0" FontWeight="Bold" Foreground="White" 
+                                   FontSize="12" Margin="10,0,0,0"/>
+                                    <ComboBox x:Name="cmbCustomerIds" Grid.Row="0"  Width="197" Height="30" VerticalAlignment="Top" 
+                                            HorizontalAlignment="Left" Background="Aquamarine" Margin="20,0,0,0" />
+                                </StackPanel>
+
+                                <GroupBox Header="Customer Info" Grid.Row="1" BorderBrush="Aquamarine" Height="396" Margin="10,10,0,0">
+                                    <Grid Margin="0,0,-2,0">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="40" />
+                                            <RowDefinition Height="40" />
+                                            <RowDefinition Height="40" />
+                                            <RowDefinition Height="40" />
+                                            <RowDefinition Height="40" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="40" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="100" />
+                                            <ColumnDefinition Width="200" />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <Label Content="First Name:" Grid.Row="0" Grid.Column="0" FontWeight="Bold" Foreground="White" FontSize="12" Margin="10,0,0,0"/>
+                                        <Label Content="Last Name:" Grid.Row="1" Grid.Column="0" FontWeight="Bold" Foreground="White" FontSize="12" Margin="10,0,0,0"/>
+                                        <Label Content="Address:" Grid.Row="2" Grid.Column="0" FontWeight="Bold" Foreground="White" FontSize="12" Margin="10,0,0,0"/>
+                                        <Label Content="SSN:" Grid.Row="3" Grid.Column="0" FontWeight="Bold" Foreground="White" FontSize="12" Margin="10,0,0,0"/>
+                                        <Label Content="Birth Date:" Grid.Row="4" Grid.Column="0" FontWeight="Bold" Foreground="White" FontSize="12" Margin="10,0,0,0"/>
+
+                                        <TextBox x:Name="txtFirsNameUpd" Grid.Row="0" Grid.Column="1" FontWeight="Bold" Height="30" Width="120" VerticalAlignment="Top" 
+                         HorizontalAlignment="Left" Margin="3,4,2,10" FontSize="12" Foreground="Black"/>
+                                        <TextBox x:Name="txtLastNameUpd" Grid.Row="1" Grid.Column="1" FontWeight="Bold" Height="30" Width="120" VerticalAlignment="Top" 
+                         HorizontalAlignment="Left" Margin="3,4,2,10" FontSize="12" Foreground="Black"/>
+                                        <TextBox x:Name="txtAddressUpd" Grid.Row="2" Grid.Column="1" FontWeight="Bold" Height="30" Width="120" VerticalAlignment="Top" 
+                         HorizontalAlignment="Left" Margin="3,4,2,10" FontSize="12" Foreground="Black"/>
+                                        <TextBox x:Name="txtSSNUpd" Grid.Row="3" Grid.Column="1" FontWeight="Bold" Height="30" Width="120" VerticalAlignment="Top" 
+                         HorizontalAlignment="Left" Margin="3,4,2,10" FontSize="12" Foreground="Black"/>
+                                        <DatePicker x:Name="dtBirthDateUpd" Grid.Row="4" Grid.Column="1" FontWeight="Bold" Height="30" Width="120" VerticalAlignment="Top" 
+                         HorizontalAlignment="Left" Margin="3,4,0,0" FontSize="12" Foreground="Black"/>
+
+                                        <Expander Header="Account Info"  Foreground="Aquamarine" FontSize="14" FontWeight="Bold" 
+                                                    IsExpanded="True" BorderBrush="Aquamarine" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2">
+                                            <Grid Margin="0,3,3,0">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="40" />
+                                                    <RowDefinition Height="40" />
+
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="80" />
+                                                    <ColumnDefinition Width="200" />
+
+                                                </Grid.ColumnDefinitions>
+                                                <Label Content="Acct. Type:" Grid.Row="0" Grid.Column="0" Width="90" Height="30" VerticalAlignment="Top" 
+                                           HorizontalAlignment="Left" Foreground="White" FontWeight="Bold"/>
+                                                <ComboBox x:Name="cmbAccountTypeUpd" Grid.Row="0" Grid.Column="1" Width="140" Height="32" VerticalAlignment="Top" 
+                                              HorizontalAlignment="Left" Background="Aquamarine"  Margin="25,10,10,2" IsReadOnly="True">
+                                                    <ListBoxItem Content="Checking"/>
+                                                    <Button Content="Saving"/>
+                                                </ComboBox>
+                                                <Label Content="Acct. Number:" Grid.Row="1" Grid.Column="0" Width="90" Height="30" VerticalAlignment="Top" 
+                                           HorizontalAlignment="Left" Foreground="White" FontWeight="Bold"/>
+                                                <TextBox x:Name="txtAcctNumberUpd" Grid.Row="1" Grid.Column="1" FontWeight="Bold" Height="30" Width="140" VerticalAlignment="Top" 
+                                             HorizontalAlignment="Left" Margin="25,5,0,0" FontSize="12" Foreground="Black"/>
+
+                                            </Grid>
+
+                                        </Expander>
+
+                                        <StackPanel Grid.Row="6" Grid.ColumnSpan="2" Grid.Column="0"  Orientation="Horizontal">
+                                            <Button Content="Update" Height="26" Width="60" Margin="90,4,4,4" HorizontalAlignment="Right" Background="Aquamarine" 
+                                Foreground="Black"  x:Name="btnUpdate" />
+                                            <Button Content="Cancel" Height="26" Width="60" Margin="10,6,4,4" HorizontalAlignment="Right" Background="Aquamarine" 
+                                Foreground="Black" x:Name="btnCancelUpd"/>
+                                            <Button Content="Delete" Height="26" Width="60" Margin="10,6,4,4" HorizontalAlignment="Right" Background="Aquamarine" 
+                                Foreground="Black" x:Name="btnDelete"/>
+                                        </StackPanel>
+                                    </Grid>
+                                </GroupBox>
+                            </Grid>
+                        </Expander>
+                       
+                    </Grid>
+                </StackPanel>
+
+                <StackPanel Grid.Row="1" Grid.Column="0"  Grid.ColumnSpan="3" Orientation="Vertical" Margin="0,0,88,0">
+                    <Label Content="Customer's Information"  Margin="0,30,0,0"  Foreground="Aquamarine" FontStyle="Oblique" FontSize="15"/>
+
+                    <DataGrid x:Name="dgCustomers" Grid.Row="1" Margin="0,10,10,10" VerticalAlignment="Stretch" BorderBrush="RoyalBlue"
+                  MinHeight="200" MinWidth="760" AutoGenerateColumns="True" Width="Auto"   Foreground="White" RowHeaderWidth="0" 
+                  GridLinesVisibility="None" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" 
+                  ColumnHeaderStyle="{Binding Source={StaticResource DataGridHeaderStyle}}" 
+                  BorderThickness="1" Grid.ColumnSpan="3"  Background="black" ItemsSource= "{Binding ''}" RowBackground="Black" Height="Auto">
+
+                  </DataGrid>
+                </StackPanel>
+            </Grid>
+        </TabItem>
+       
+    </TabControl>
+</Window>
